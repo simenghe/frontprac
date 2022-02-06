@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Card({ username }) {
+export default function Card({ username, idx, setCards }) {
   const [blur, setBlur] = useState(true);
   return (
     <div

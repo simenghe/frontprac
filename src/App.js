@@ -44,7 +44,7 @@ function App() {
         <div className="grid grid-rows-4 grid-cols-2 gap-4 p-6 w-screen">
           {cards &&
             cards.map((x, i) => {
-              return <Card key={i} username={x.username} />;
+              return <Card key={i} idx={i} username={x.username} cardSet={setCards} />;
             })}
         </div>
       </header>
