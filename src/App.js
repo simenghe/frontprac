@@ -1,3 +1,8 @@
+/*
+Grid of credit cards that you can and add or delete.
+Click on a specific card to get more information.
+Rating system on each card.
+*/
 import logo from './logo.svg';
 import './App.css';
 
