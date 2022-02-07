@@ -14,7 +14,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import Card from "./components/Card";
 import { v4 as uuid } from "uuid";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CardContext } from "./contexts/CardContext";
 
 const sampleCard = {
   id: uuid(),
@@ -22,15 +23,24 @@ const sampleCard = {
   email: "bob@gmail.com",
 };
 function App() {
-  const [cards, setCards] = useState(new Array(4).fill(sampleCard));
+  const [curCards, setCurCards] = useState(new Array(4).fill(sampleCard));
+  const [cards, setCards] = useContext(CardContext);
+  console.log(curCards);
   console.log(cards);
+  useEffect(() => {
+    // setCards({ ...cards, caner: "trance" });
+    setCards((prev) => {
+      let newState = { ...prev, wezer: "madem" };
+      return newState;
+    });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
         <form className="w-full bg-green-900">
           <label className="block">
             <span className="block text-sm font-medium text-white">
-              Username
+              Username {JSON.stringify(cards)}
             </span>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -42,9 +52,16 @@ function App() {
         </form>
 
         <div className="grid grid-rows-4 grid-cols-2 gap-4 p-6 w-screen">
-          {cards &&
-            cards.map((x, i) => {
-              return <Card key={i} idx={i} username={x.username} cardSet={setCards} />;
+          {curCards &&
+            curCards.map((x, i) => {
+              return (
+                <Card
+                  key={i}
+                  idx={i}
+                  username={x.username}
+                  cardSet={setCurCards}
+                />
+              );
             })}
         </div>
       </header>
